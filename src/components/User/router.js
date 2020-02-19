@@ -18,4 +18,14 @@ const router = Router();
  */
 router.get('/',  UserComponent.findAll);
 
+/**
+ * Route create new user.
+ * @name /v1/users
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware.
+ */
+router.get('/create',  UserComponent.create);
+
 module.exports = router;
