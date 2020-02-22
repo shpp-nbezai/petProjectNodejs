@@ -1,6 +1,7 @@
 const UserModel = require('./model');
 
 module.exports = {
+
     /**
      * @exports
      * @method findAll
@@ -10,18 +11,20 @@ module.exports = {
      */
     async findAll() {
         return await UserModel.find({});
-    }
+    },
 
     /**
      * @exports
      * @method create
-     * @param {}
-     * @summary get list of all users
+     * @param {fullName, email}
+     * @summary create a new user
      * @returns Promise<UserModel[]>
      */
-    async create(fullName, email) {
-        
-        return await UserModel.find({});
+    async create(user) {
+        return await UserModel.create(user, function (err, user) {
+            if (err) return handleError(err);
+            console.log('user - ', user);
+            return user;
+        });
     }
-
 };

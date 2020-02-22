@@ -16,16 +16,16 @@ const router = Router();
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.get('/',  UserComponent.findAll);
+router.get('/find',  UserComponent.findAll);
 
 /**
  * Route create new user.
  * @name /v1/users
  * @function
- * @inner
+ * @inner {fulname, email}
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.get('/create',  UserComponent.create);
+router.post('/create',  UserComponent.create);
 
 module.exports = router;
