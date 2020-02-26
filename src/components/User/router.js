@@ -1,5 +1,5 @@
-const { Router } =  require('express');
-const UserComponent =  require('../User');
+const { Router } = require('express');
+const UserComponent = require('../User');
 
 /**
  * Express router to mount user related functions on.
@@ -16,16 +16,46 @@ const router = Router();
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.get('/find',  UserComponent.findAll);
+router.get('/', UserComponent.findAll);
 
 /**
- * Route create new user.
- * @name /v1/users
+ * Route serving a user
+ * @name /v1/users/:id
  * @function
- * @inner {fulname, email}
+ * @inner
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware.
  */
-router.post('/create',  UserComponent.create);
+router.get('/:id', UserComponent.findById);
+
+/**
+ * Route serving a new user
+ * @name /v1/users
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ */
+router.post('/create', UserComponent.create);
+
+/**
+ * Route serving a new user
+ * @name /v1/users
+ * @function
+ * @inner
+ * @param {string} path - Express path
+ * @param {callback} middleware - Express middleware
+ */
+router.put('/', UserComponent.updateById);
+
+/**
+ * Route serving a new user
+ * @name /v1/users
+ * @function
+ * @inner
+ * @param {string} path -Express path
+ * @param {callback} middleware - Express middleware
+ */
+router.post('/delete', UserComponent.deleteById);
 
 module.exports = router;

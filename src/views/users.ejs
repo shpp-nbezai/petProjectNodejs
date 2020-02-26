@@ -1,0 +1,63 @@
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn modal-trigger" href="#modal1">Add new user.</a>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, { opacity: 0.5 });
+  });
+</script>
+<!-- Modal Structure -->
+<div id="modal1" class="modal">
+  <div class="modal-content">
+    <h4>New user:</h4>
+    <form method="POST" action="/v1/users/create">
+      <div class="input-field col s12">
+        <input id="fullName" name="fullName" type="text" minlength="2" class="validate">
+        <label for="fullName">Full name</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+      </div>
+      <div class="input-field col s12">
+        <input id="email" name="email" type="email" class="validate">
+        <label for="email">Email</label>
+        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+      </div>      
+      <p><input type=submit value="Submit message"></p>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+  </div>
+</div>
+<table class="striped centered responsive-table ">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Email</th>
+      <th></th>
+      <th>Full name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for(var i = 0; i < users.length; i++) { %>
+    <tr>
+      <td><%= i+1 %></td>
+      <td><%= users[i].email %></td>
+      <td>update <%= users[i]._id %></td>
+      <td><%= users[i].fullName %></td>
+      <td>
+        <form method="POST" action="/v1/users/delete">
+            <input hidden name="_id" type="text" value="<%= users[i]._id %>">
+          <p><input type=submit value="delete"></p>
+        </form>
+      </td>
+    </tr>
+    <% } %>
+  </tbody>
+</table>
