@@ -53,7 +53,7 @@
       <td><%= users[i].fullName %></td>
       <td>
         <form method="POST" action="/v1/users/delete">
-            <input hidden name="_id" type="text" value="<%= users[i]._id %>">
+            <input hidden name="id" type="text" value="<%= users[i]._id %>">
           <p><input type=submit value="delete"></p>
         </form>
       </td>

@@ -81,9 +81,6 @@ async function create(req, res, next) {
         const user = await UserService.create(req.body);
 
         res.redirect('/v1/users');
-        // return res.status(200).json({
-        //     data: user,
-        // });
     } catch (error) {
         if (error instanceof ValidationError) {
             return res.status(422).json({
@@ -156,9 +153,6 @@ async function deleteById(req, res, next) {
         const deletedUser = await UserService.deleteById(req.body.id);
 
         res.redirect('/v1/users');
-        // return res.status(200).json({
-        //     data: deletedUser,
-        // });
     } catch (error) {
         if (error instanceof ValidationError) {
             return res.status(422).json({
