@@ -46,7 +46,7 @@ router.post('/create', UserComponent.create);
  * @param {string} path - Express path
  * @param {callback} middleware - Express middleware
  */
-router.put('/', UserComponent.updateById);
+router.post('/update', UserComponent.updateById);
 
 /**
  * Route serving a new user

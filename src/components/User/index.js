@@ -115,9 +115,7 @@ async function updateById(req, res, next) {
 
         const updatedUser = await UserService.updateById(req.body.id, req.body);
 
-        return res.status(200).json({
-            data: updatedUser,
-        });
+        res.redirect('/v1/users');
     } catch (error) {
         if (error instanceof ValidationError) {
             return res.status(422).json({
