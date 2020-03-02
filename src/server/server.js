@@ -1,9 +1,11 @@
 const express = require('express');
-const middleware = require('../config/middleware');
-const routes = require('../config/router');
+const flash = require('connect-flash');
 const path = require('path');
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
+const routes = require('../config/router');
+const middleware = require('../config/middleware');
 /**
  * @type {express}
  * @constant {express.Application}
@@ -38,6 +40,21 @@ app.set('views', path.join(__dirname, '../views'));
 /**
  * @description set up path for views directory
  */
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+
+/**
+ * @description add flash massages 
+ */
+const sessionStore = new session.MemoryStore();
+
+app.use(cookieParser('secret'));
+app.use(session({
+    cookie: { maxAge: 60000 },
+    store: sessionStore,
+    saveUninitialized: true,
+    resave: 'true',
+    secret: 'secret',
+}));
+app.use(flash());
 
 module.exports = app;

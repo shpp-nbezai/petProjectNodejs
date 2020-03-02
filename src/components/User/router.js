@@ -39,7 +39,7 @@ router.get('/:id', UserComponent.findById);
 router.post('/create', UserComponent.create);
 
 /**
- * Route serving a new user
+ * Route serving an update user name
  * @name /v1/users
  * @function
  * @inner
@@ -49,7 +49,7 @@ router.post('/create', UserComponent.create);
 router.post('/update', UserComponent.updateById);
 
 /**
- * Route serving a new user
+ * Route serving a delete user
  * @name /v1/users
  * @function
  * @inner
