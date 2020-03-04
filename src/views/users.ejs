@@ -50,7 +50,7 @@
     <% for(var i = 0; i < users.length; i++) { %>
     <tr>
       <td><%= i+1 %></td>
-      <td><%= users[i].email %></td>
+      <td class="user-email"><%= users[i].email %></td>
 
       <td>
         <a class="waves-effect waves-light btn modal-trigger" href="#modalEditUser<%= i+1 %>">update</a>
