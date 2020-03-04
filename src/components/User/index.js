@@ -12,10 +12,9 @@ const ValidationError = require('../../error/ValidationError');
 async function findAll(req, res, next) {
     try {
         const users = await UserService.findAll();
-
         res.render('users', {
             users,
-            expressFlash: req.flash('success'),
+            message: '',
         });
     } catch (error) {
         res.status(500).json({
@@ -150,14 +149,9 @@ async function deleteById(req, res, next) {
         }
 
         const deletedUser = await UserService.deleteById(req.body.id);
-
-        req.session.sessionFlash = {
-            type: 'success',
-            message: `The user with id:${deletedUser} deleted.`,
-        };
+        req.flash();
+        req.flash('message', `The user with id:${deletedUser} deleted.`);
         res.redirect(302, '/v1/users');
-        // req.flash('info', `The user with id:${deletedUser} deleted.`);
-        res.redirect('/v1/users');
     } catch (error) {
         if (error instanceof ValidationError) {
             return res.status(422).json({

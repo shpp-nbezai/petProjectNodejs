@@ -49,11 +49,9 @@ const sessionStore = new session.MemoryStore();
 
 app.use(cookieParser('secret'));
 app.use(session({
-    cookie: { maxAge: 60000 },
-    store: sessionStore,
+    secret: 'happy dog',
     saveUninitialized: true,
-    resave: 'true',
-    secret: 'secret',
+    resave: true,
 }));
 app.use(flash());
 
